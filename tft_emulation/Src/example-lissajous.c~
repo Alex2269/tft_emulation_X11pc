@@ -1,0 +1,61 @@
+
+void lissajous1(void)
+{
+  float frequency1 = 10.0;
+  float frequency2 = 10.0001;
+  float x = 0;
+  float y = 0;
+  float oldx = 0;
+  float oldy = 0;
+  float angle = 0;
+  float beta = 0.0;
+  // Frame Loop
+  while(1)
+  {
+    // Curve Draw Loop
+    for(angle = 0; angle < 2 * 3.14159265359; angle += 0.01)
+    {
+      setCursor(x, y);
+      x = 40*cos(frequency1*angle + beta) + 60;
+      y = 20*sin(frequency2*angle) + 30;
+      fillRect(x*2, y*2,1,1, CYAN);
+    }
+    angle = 0;
+    delay(25); // Refresh Rate
+    beta += 0.05;
+    fillRect(20, 14, 200,90, GRAY);
+    // fflush(stdout);
+  }
+}
+
+void lissajous2(uint16_t pos_x, uint16_t pos_y, float frequency1, float frequency2, uint32_t color, uint32_t bg_color)
+{
+  float x = 0;
+  float y = 0;
+  float arx[628] = {0};
+  float ary[628] = {0};
+  int angle = 0;
+  float beta = 0.0;
+  // Frame Loop
+  while(1)
+  {
+    // Curve Draw Loop
+    for(angle = 0; angle < 628; angle ++)
+    {
+      setCursor(x, y);
+      arx[angle] = 4*cos(frequency1*(angle + beta) + 60);
+      ary[angle] = 2*sin(frequency2*(angle) + 30);
+      fillRect(pos_x + arx[angle]*18, pos_y + ary[angle]*18,1,1, color);
+    }
+    delay(10); // Refresh Rate
+
+    for(angle = 0; angle < 628; angle ++)
+    {
+      fillRect(pos_x + arx[angle]*18, pos_y + ary[angle]*18,1,1, bg_color); // clear
+    }
+
+    beta += 0.05;
+    // fillRect(20, 14, 200,90, GRAY);
+    // fflush(stdout);
+  }
+}
