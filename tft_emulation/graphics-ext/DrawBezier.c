@@ -17,3 +17,19 @@ void DrawBezier(float ax, float ay, float bx, float by, float cx, float cy, floa
   }
 }
 
+void DrawBezierFX(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, uint8_t solid, uint32_t color)
+{
+  for(unsigned i=0; i<=1024; i+=1)
+  {
+    unsigned t = i<<5;
+    unsigned u = (1024-i)<<5;
+    unsigned a = ((((u*u)>>15)*u)>>15);
+    unsigned b = ((((t*u)>>15)*u)>>15)*3;
+    unsigned c = ((((t*t)>>15)*u)>>15)*3;
+    unsigned d = ((((t*t)>>15)*t)>>15);
+    int x = ax*a + bx*b + cx*c + dx*d;
+    int y = ay*a + by*b + cy*c + dy*d;
+    fillRect(x>>15 ,y>>15, solid,solid, color);
+  }
+}
+
