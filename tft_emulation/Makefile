@@ -57,15 +57,16 @@ AS_INCLUDES =
 # includes
 # Find header directories
 INCDIR = .
-C_INC       =$(shell find -L Src      -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L FontsUG  -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L graphics -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L libs     -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L c_images -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L Widgets  -name '*.h' -exec dirname {} \; | uniq)
+C_INC       =$(shell find -L Src          -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L FontsUG      -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L graphics     -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L graphics-ext -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L libs         -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L c_images     -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L Widgets      -name '*.h' -exec dirname {} \; | uniq)
 
-CPP_INC     =$(shell find -L Src     -name '*.h' -exec dirname {} \; | uniq)
-CPP_INC    +=$(shell find -L FontsUG -name '*.h' -exec dirname {} \; | uniq)
+CPP_INC     =$(shell find -L       -name '*.h' -exec dirname {} \; | uniq)
+CPP_INC    +=$(shell find -L       -name '*.h' -exec dirname {} \; | uniq)
 C_INCLUDES  =$(C_INC:%=-I%)
 CPP_INCLUDES=$(CPP_INC:%=-I%)
 
