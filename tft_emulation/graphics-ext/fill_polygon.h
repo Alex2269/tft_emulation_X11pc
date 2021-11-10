@@ -6,9 +6,6 @@
 #include "stdbool.h"
 
 
-// http:// lienryderflex.com/intersect/
-static int
-lineSegmentIntersection(float Ax, float Ay, float Bx, float By, float Cx, float Cy, float Dx, float Dy, float *X, float *Y);
 void fill_regular_polygon(int center_x, int center_y, int vertices, int radius, uint32_t color);
 
 
