@@ -6,10 +6,11 @@
 #include <stdio.h>
 #include <limits.h>
 
-#include "colors.h"
+#include "color.h"
 #include "fonts_all_includes.h"
 #include "c_images_all_includes.h"
 #include "lissajous.h"
+#include "fill_polygon.h"
 
 #define WIDTH 800
 #define HEIGHT 480
@@ -186,6 +187,8 @@ int main(void){
     // dial_arc();
 
     lissajous(385,52, 0.125, 0.250, CYAN , DARKSLATEGRAY);
+
+    // fill_regular_polygon(360, 310, 5, 45);
 
     gfx_flush(); //Update the graphics
 
