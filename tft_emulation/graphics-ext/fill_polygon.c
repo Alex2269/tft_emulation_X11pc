@@ -42,7 +42,7 @@ lineSegmentIntersection(float Ax, float Ay, float Bx, float By, float Cx, float 
   return 1;
 }
 
-void fill_regular_polygon(int center_x, int center_y, int vertices, int radius)
+void fill_regular_polygon(int center_x, int center_y, int vertices, int radius, uint32_t color)
 {
   const double a = 2.0 * 3.14159265358979323846 / (double)vertices;
   int i = 1;
@@ -72,12 +72,12 @@ void fill_regular_polygon(int center_x, int center_y, int vertices, int radius)
       if (center_x + x < Display_Get_WIDTH())
       {
         // lineto(center_x + x, center_y + y);
-        drawLine(getCursorX(), getCursorY(), center_x + x, center_y + y, GREEN);
+        drawLine(getCursorX(), getCursorY(), center_x + x, center_y + y, color);
       }
       else
       {
         // lineto(Display_Get_WIDTH() - 1, center_y + y);
-        drawLine(getCursorX(), getCursorY(), Display_Get_WIDTH() - 1, center_y + y, GREEN);
+        drawLine(getCursorX(), getCursorY(), Display_Get_WIDTH() - 1, center_y + y, color);
       }
     }
     y++;

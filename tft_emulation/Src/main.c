@@ -186,14 +186,15 @@ int main(void){
     gauge(640, 270, YELLOW, 270+20); // value == degrees
 
     // dial_arc();
+
     float ax, ay, bx, by, cx, cy, dx, dy;
-    ax=280; bx=230; cx=350; dx=300;
-    ay=430; by=160; cy=160; dy=430;
+    ax=295; bx=250; cx=350; dx=305;
+    ay=430; by=190; cy=190; dy=430;
     DrawBezier(ax, ay, bx, by, cx, cy, dx, dy, 4, YELLOW);
 
-    lissajous(385,52, 0.125, 0.250, CYAN , DARKSLATEGRAY);
+    fill_regular_polygon(360, 310, 5, 45, BLUE);
 
-    // fill_regular_polygon(360, 310, 5, 45);
+    lissajous(385,52, 0.125, 0.250, CYAN , DARKSLATEGRAY);
 
     gfx_flush(); //Update the graphics
 
