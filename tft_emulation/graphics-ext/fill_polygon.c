@@ -1,7 +1,6 @@
 #include "color.h"
 #include "fill_polygon.h"
 
-// http:// lienryderflex.com/intersect/
 static int
 lineSegmentIntersection(float Ax, float Ay, float Bx, float By, float Cx, float Cy, float Dx, float Dy, float *X, float *Y)
 {
