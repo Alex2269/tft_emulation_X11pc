@@ -11,6 +11,7 @@
 #include "c_images_all_includes.h"
 #include "lissajous.h"
 #include "fill_polygon.h"
+#include "DrawBezier.h"
 
 #define WIDTH 800
 #define HEIGHT 480
@@ -185,6 +186,10 @@ int main(void){
     gauge(640, 270, YELLOW, 270+20); // value == degrees
 
     // dial_arc();
+    float ax, ay, bx, by, cx, cy, dx, dy;
+    ax=280; bx=230; cx=350; dx=300;
+    ay=430; by=160; cy=160; dy=430;
+    DrawBezier(ax, ay, bx, by, cx, cy, dx, dy, 4, YELLOW);
 
     lissajous(385,52, 0.125, 0.250, CYAN , DARKSLATEGRAY);
 
