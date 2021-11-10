@@ -1,6 +1,7 @@
 #include "vga_adafruit.h"
 #include "DrawBezier.h"
 
+// https://stackoverflow.com/questions/12430016/bezier-drawing-routine-to-fixed-point-how-to-rewrite
 void DrawBezier(float ax, float ay, float bx, float by, float cx, float cy, float dx, float dy, uint8_t solid, uint32_t color)
 {
   float step = 1.0/1000.0;
