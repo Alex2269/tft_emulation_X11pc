@@ -188,9 +188,9 @@ int main(void){
     // dial_arc();
 
     float ax, ay, bx, by, cx, cy, dx, dy;
-    ax=295; bx=250; cx=350; dx=305;
-    ay=430; by=190; cy=190; dy=430;
-    DrawBezierFX(ax, ay, bx, by, cx, cy, dx, dy, 4, YELLOW);
+    ax=290; bx=260; cx=340; dx=310;
+    ay=430; by=300; cy=300; dy=430;
+    DrawBezierFX(ax, ay, bx, by, cx, cy, dx, dy, 1, YELLOW);
 
     fill_regular_polygon(360, 310, 5, 45, BLUE);
 
