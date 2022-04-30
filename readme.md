@@ -7,4 +7,9 @@
 
 ![image1](./screenshot/lissajous.gif)
 
+-  depends:
+-  apt install -y freeglut3-dev
+-  apt install -y libglfw3-dev
+-  apt install -y libelf-dev
+
 
