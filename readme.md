@@ -6,5 +6,11 @@
 -  Can be rebuilt if someone will change write Pixel.
 
 ![image1](./screenshot/lissajous.gif)
+![image2](./screenshot/Adafruit_GFX-pc.gif)
+
+-  depends:
+-  apt install -y freeglut3-dev
+-  apt install -y libglfw3-dev
+-  apt install -y libelf-dev
 
 

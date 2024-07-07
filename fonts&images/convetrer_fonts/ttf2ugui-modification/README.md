@@ -27,6 +27,13 @@ Convert font in ClearSans.ttf to 8,12,14,16... point size bitmap font for 140 DP
 
  make
 
+ ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 8  --dump
+ ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 12 --dump
+ ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 16 --dump
+ ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 20 --dump
+ ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 24 --dump
+ ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 32 --dump
+
  ./ttf2ugui --font ClearSans.ttf --dpi 140 --size 8  --dump
  ./ttf2ugui --font ClearSans.ttf --dpi 140 --size 12 --dump
  ./ttf2ugui --font ClearSans.ttf --dpi 140 --size 16 --dump
@@ -34,12 +41,12 @@ Convert font in ClearSans.ttf to 8,12,14,16... point size bitmap font for 140 DP
  ./ttf2ugui --font ClearSans.ttf --dpi 140 --size 24 --dump
  ./ttf2ugui --font ClearSans.ttf --dpi 140 --size 32 --dump
 
- ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 8  --dump
- ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 12 --dump
- ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 16 --dump
- ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 20 --dump
- ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 24 --dump
- ./ttf2ugui --font BebasNeue.ttf --dpi 140 --size 32 --dump
+ ./ttf2ugui --font Rajdhani.ttf --dpi 140 --size 8  --dump
+ ./ttf2ugui --font Rajdhani.ttf --dpi 140 --size 12 --dump
+ ./ttf2ugui --font Rajdhani.ttf --dpi 140 --size 16 --dump
+ ./ttf2ugui --font Rajdhani.ttf --dpi 140 --size 20 --dump
+ ./ttf2ugui --font Rajdhani.ttf --dpi 140 --size 24 --dump
+ ./ttf2ugui --font Rajdhani.ttf --dpi 140 --size 32 --dump
 
  ```
 

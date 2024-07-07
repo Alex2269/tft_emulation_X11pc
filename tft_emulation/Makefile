@@ -40,6 +40,9 @@ endif
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
  
+CPU = -m64
+MCU = $(CPU)
+
 # macros for gcc
 # AS defines
 AS_DEFS = 
@@ -49,6 +52,8 @@ C_DEFS +=
 C_DEFS += '-D GLEW_STATIC'
 # C_DEFS += '-D __align(value)=__attribute__((aligned(value)))'
 # C_DEFS += '-D __forceinline=__attribute__((always_inline))'
+# C_DEFS += '-D __irq=__attribute__((interrupt("IRQ")))'
+# C_DEFS += '-D __packed=__attribute__((__packed__))'
 # C_DEFS += '-D __weak=__attribute__((weak))'
 
 # AS includes
@@ -57,21 +62,57 @@ AS_INCLUDES =
 # includes
 # Find header directories
 INCDIR = .
-C_INC       =$(shell find -L Src      -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L FontsUG  -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L graphics -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L libs     -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L c_images -name '*.h' -exec dirname {} \; | uniq)
-C_INC      +=$(shell find -L Widgets  -name '*.h' -exec dirname {} \; | uniq)
+C_INC       =$(shell find -L Src          -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L FontsUG      -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L graphics     -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L graphics-ext -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L libs         -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L c_images     -name '*.h' -exec dirname {} \; | uniq)
+C_INC      +=$(shell find -L Widgets      -name '*.h' -exec dirname {} \; | uniq)
 
-CPP_INC     =$(shell find -L Src     -name '*.h' -exec dirname {} \; | uniq)
-CPP_INC    +=$(shell find -L FontsUG -name '*.h' -exec dirname {} \; | uniq)
+CPP_INC     =$(shell find -L       -name '*.h' -exec dirname {} \; | uniq)
+CPP_INC    +=$(shell find -L       -name '*.h' -exec dirname {} \; | uniq)
 C_INCLUDES  =$(C_INC:%=-I%)
 CPP_INCLUDES=$(CPP_INC:%=-I%)
 
-GCCFLAGS += -Wall
-GCCFLAGS += -fdata-sections
-GCCFLAGS += -ffunction-sections
+# compile gcc flags
+# ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+
+WARNINGS := -Wall
+WARNINGS += -Wextra
+WARNINGS += -Wshadow
+WARNINGS += -Wundef
+WARNINGS += -Wmaybe-uninitialized
+WARNINGS += -Wmissing-prototypes
+WARNINGS += -Wno-discarded-qualifiers
+WARNINGS += -Wno-unused-function
+WARNINGS += -Wno-error=strict-prototypes
+WARNINGS += -Wno-error=cpp
+WARNINGS += -Wno-unused-parameter
+WARNINGS += -Wno-missing-field-initializers
+WARNINGS += -Wno-format-nonliteral
+WARNINGS += -Wno-cast-qual
+WARNINGS += -Wno-switch-default
+WARNINGS += -Wno-ignored-qualifiers
+WARNINGS += -Wno-error=pedantic
+WARNINGS += -Wno-sign-compare
+WARNINGS += -Wno-error=missing-prototypes
+# WARNINGS += -Wpointer-arith -fno-strict-aliasing
+# WARNINGS += -Wuninitialized
+# WARNINGS += -Wunreachable-code
+# WARNINGS += -Wreturn-type
+# WARNINGS += -Wmultichar
+# WARNINGS += -Wformat-security
+# WARNINGS += -Wdouble-promotion
+# WARNINGS += -Wclobbered
+# WARNINGS += -Wdeprecated
+# WARNINGS += -Wempty-body
+# WARNINGS += -Wshift-negative-value
+# WARNINGS += -Wtype-limits
+# WARNINGS += -Wsizeof-pointer-memaccess
+# WARNINGS += -Wpointer-arith
+
+GCCFLAGS += -O0 -g $(WARNINGS)
 
 CFLAGS_STD = -c -Os -w -std=gnu17 $(GCCFLAGS)
 CXXFLAGS_STD = -c -Os -w -std=gnu++17 $(GCCFLAGS)
@@ -133,8 +174,8 @@ $(BUILD_APP_DIR)/$(TARGET).elf: $(OBJECTS) Makefile | $(BUILD_APP_DIR)
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@ --format=Berkeley
 	cp $(BUILD_APP_DIR)/$(TARGET).elf ./
-	./$(BUILD_APP_DIR)/$(TARGET).elf
-#	$(SZ) $@ --format=SysV --radix=16
+	# $(BUILD_APP_DIR)/$(TARGET).elf
+	# $(SZ) $@ --format=SysV --radix=16
 
 $(BUILD_APP_DIR)/%.hex: $(BUILD_APP_DIR)/%.elf | $(BUILD_APP_DIR)
 	$(HEX) $< $@
@@ -156,7 +197,7 @@ $(BUILD_ASM_DIR):
 #######################################
 clean:
 	-rm -fR $(BUILD_DIR)
-	rm -f application.elf
+	-rm -f  $(TARGET).elf
 
 -include $(wildcard $(BUILD_DIR)/*.d)
 

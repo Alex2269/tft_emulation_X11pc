@@ -6,10 +6,12 @@
 #include <stdio.h>
 #include <limits.h>
 
-#include "colors.h"
+#include "color.h"
 #include "fonts_all_includes.h"
 #include "c_images_all_includes.h"
 #include "lissajous.h"
+#include "fill_polygon.h"
+#include "DrawBezier.h"
 
 #define WIDTH 800
 #define HEIGHT 480
@@ -184,6 +186,13 @@ int main(void){
     gauge(640, 270, YELLOW, 270+20); // value == degrees
 
     // dial_arc();
+
+    float ax, ay, bx, by, cx, cy, dx, dy;
+    ax=290; bx=260; cx=340; dx=310;
+    ay=430; by=300; cy=300; dy=430;
+    DrawBezierFX(ax, ay, bx, by, cx, cy, dx, dy, 1, YELLOW);
+
+    fill_regular_polygon(360, 310, 5, 45, BLUE);
 
     lissajous(385,52, 0.125, 0.250, CYAN , DARKSLATEGRAY);
 

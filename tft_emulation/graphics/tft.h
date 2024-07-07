@@ -2,7 +2,7 @@
 #define __tft___H_
 
 #include "fonts_all_includes.h"
-#include "colors.h"
+#include "color.h"
 
  /* Set here your display resolution. */
 

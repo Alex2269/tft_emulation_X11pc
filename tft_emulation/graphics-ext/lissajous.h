@@ -10,4 +10,3 @@ void lissajous(uint16_t pos_x, uint16_t pos_y, float frequency1, float frequency
 
 #endif // lissajous_H
 
-

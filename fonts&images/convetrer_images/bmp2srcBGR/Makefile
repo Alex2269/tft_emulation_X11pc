@@ -4,7 +4,7 @@ SRC = bmp2src.c
 all: $(BIN)
 
 $(BIN): $(SRC)
-# 	@echo 
+#	@echo
 	rm -rf bin
 	mkdir  bin
 	gcc $^ -o $@
