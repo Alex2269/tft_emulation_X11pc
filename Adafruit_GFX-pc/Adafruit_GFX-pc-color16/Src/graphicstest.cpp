@@ -4,10 +4,6 @@ extern Adafruit_GFX tft;
 
 float PI = 3.14159;
 
-inline uint16_t LCD_Color565_to_Color16(uint8_t r, uint8_t g, uint8_t b) {
-  return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
-}
-
 float sin_table_a[sinus_points];
 float sin_table_b[sinus_points];
 float sin_table_c[sinus_points];
@@ -200,7 +196,7 @@ unsigned long testTriangles(void) {
       cx    , cy - i, // peak
       cx - i, cy + i, // bottom left
       cx + i, cy + i, // bottom right
-      LCD_Color565_to_Color16(0, 0, i));
+      LCD_Color565_to_Color16(0, 0, i>>1));
       //BLUE);
   }
 
@@ -217,10 +213,10 @@ unsigned long testFilledTriangles(void) {
   for(i=MIN(cx,cy); i>10; i-=5) {
     start = micros();
     tft.fillTriangle(cx, cy - i, cx - i, cy + i, cx + i, cy + i,
-      LCD_Color565_to_Color16(0, i, i));
+    LCD_Color565_to_Color16(0, i>>1, i>>1));
     t += micros() - start;
     tft.drawTriangle(cx, cy - i, cx - i, cy + i, cx + i, cy + i,
-      LCD_Color565_to_Color16(i, i, 0));
+    LCD_Color565_to_Color16(i>>1, i>>1, 0));
   }
 
   return t;
@@ -237,7 +233,7 @@ unsigned long testRoundRects(void) {
   start = micros();
   for(i=0; i<w; i+=6) {
     i2 = i / 2;
-    tft.drawRoundRect(cx-i2, cy-i2, i, i, i/8, LCD_Color565_to_Color16(i, 0, 0));
+    tft.drawRoundRect(cx-i2, cy-i2, i, i, i/8, LCD_Color565_to_Color16(i>>1, 0, 0));
   }
 
   return micros() - start;
@@ -253,8 +249,9 @@ unsigned long testFilledRoundRects(void) {
   start = micros();
   for(i=MIN(tft.width(), tft.height()); i>20; i-=6) {
     i2 = i / 2;
-    tft.fillRoundRect(cx-i2, cy-i2, i, i, i/8, LCD_Color565_to_Color16(0, i, 0));
+    tft.fillRoundRect(cx-i2, cy-i2, i, i, i/8, LCD_Color565_to_Color16(0, i>>1, 0));
   }
 
   return micros() - start;
 }
+

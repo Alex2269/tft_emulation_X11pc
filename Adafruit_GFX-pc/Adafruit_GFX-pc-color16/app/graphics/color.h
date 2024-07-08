@@ -1,6 +1,54 @@
 #ifndef colors_H_
 #define colors_H_
 
+inline uint32_t LCD_Color565_to_888(uint16_t color) {
+  return (((color & 0xF800) << 8) | ((color & 0x7E0) << 5) | ((color & 0x1F) << 3));  // transform to rrrrrrxx ggggggxx bbbbbbxx
+}
+
+inline uint8_t LCD_Color565_to_R(uint16_t color) {
+  return ((color & 0xF800) >> 8);  // transform to rrrrrrxx
+}
+
+inline uint8_t LCD_Color565_to_G(uint16_t color) {
+  return ((color & 0x7E0) >> 3);  // transform to ggggggxx
+}
+
+inline uint8_t LCD_Color565_to_B(uint16_t color) {
+  return ((color & 0x1F) << 3);  // transform to bbbbbbxx
+}
+
+inline uint16_t LCD_Color565_to_Color16(uint8_t r, uint8_t g, uint8_t b) {
+  return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
+}
+
+inline uint32_t LCD_Color888_to_Color24(uint8_t R8, uint8_t G8, uint8_t B8) {
+  uint32_t color24;
+  // color24 = ( R8 & 0x00ffff ) << 16 | ( G8 & 0xff00ff ) << 8 | ( B8 & 0x0000ff );
+  color24 = R8 << 16 | G8 << 8 | B8;
+  return color24;
+}
+
+inline uint16_t H24_RGB565(uint8_t reverse, uint32_t color24)
+{
+  uint8_t b = (color24 >> 16) & 0xFF;
+  uint8_t g = (color24 >> 8) & 0xFF;
+  uint8_t r = color24 & 0xFF;
+  if (reverse) return ((b / 8) << 11) | ((g / 4) << 5) | (r / 8);
+  else return ((r / 8) << 11) | ((g / 4) << 5) | (b / 8);
+}
+
+// RGB565 conversion
+// RGB565 is R(5)+G(6)+B(5)=16bit color format.
+// Bit image "RRRRRGGGGGGBBBBB"
+inline uint16_t rgb565_conv(uint16_t r,uint16_t g,uint16_t b)
+{
+  unsigned int RR,GG,BB;
+  RR = (r * 31 / 255) << 11;
+  GG = (g * 63 / 255) << 5;
+  BB = (b * 31 / 255);
+  return(RR | GG | BB);
+}
+
 #define MAROON                 0x8000
 #define DARKRED                0x8800
 #define BROWN                  0xA145
