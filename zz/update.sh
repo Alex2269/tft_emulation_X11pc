@@ -25,5 +25,5 @@
    ffmpeg -i lissajous.mp4 -ss 00:00:05 -to 00:00:09 -r 8 lissajous.gif
 
    ffmpeg -f x11grab -show_region 1 -framerate 25 -video_size 640x510 -i :0.0 jous.mp4
-   ffmpeg -i jous.mp4 -ss 00:00:8 -to 00:00:19 -r 16 jous.gif
+   ffmpeg -i Adafruit_GFX-pc.mp4 -ss 00:00:14.25 -to 00:00:24.35 -r 10 Adafruit_GFX-pc.gif
    #******************************************
