@@ -1,0 +1,23 @@
+# Prerequisites
+*.d
+
+# CubeMX
+.mxproject
+
+
+# Object files
+*.o
+*.obj
+*.elf
+*.out
+
+# Linker output
+*.lst
+*.map
+
+
+# Executables
+*.bin
+*.hex
+
+
